@@ -2,9 +2,14 @@ import { CategoryButton } from "./components/CategoryButton";
 import OrderByButton from "./components/OrderByButton";
 import RecipeCard from "./components/RecipeCard";
 import SearchBar from "./components/SearchBar";
-import { categories, recipes } from "./data";
+import { categories } from "./data";
+import { useRecipes } from "./hooks/useRecipes";
+import { Recipe } from "./types";
 
 function App() {
+  const { recipes, isloading, isError } = useRecipes();
+  console.log(recipes);
+
   return (
     <>
       <header
@@ -41,13 +46,19 @@ function App() {
           </div>
           {/* recetas */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-8">
-            {recipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                name={recipe.name}
-                img={recipe.image}
-              />
-            ))}
+            {isError ? (
+              <p>Ha ocurrido un error</p>
+            ) : isloading ? (
+              <p>Cargando Recetas</p>
+            ) : (
+              recipes.map((recipe: Recipe) => (
+                <RecipeCard
+                  key={recipe.id}
+                  name={recipe.title}
+                  img={recipe.image}
+                />
+              ))
+            )}
           </div>
         </section>
       </main>

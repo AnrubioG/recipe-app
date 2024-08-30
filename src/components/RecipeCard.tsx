@@ -10,7 +10,7 @@ export default function RecipeCard({ name, img }: RecipeCardProps) {
     <Card className="p-2 bg-slate-800">
       <CardContent className="p-0 w-full overflow-hiddenn">
         <img
-          src={`/img/${img}`}
+          src={img}
           alt={`Imagen de ${name}`}
           className="w-full max-h-44 rounded-lg inset-0 object-cover object-top"
         />
