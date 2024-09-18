@@ -1,9 +1,10 @@
 import { useRecipesDetail } from "@/hooks/useRecipeDetail";
 import { useRecipeStore } from "@/store/store";
+import { IngredientsList } from "./IngredientsList";
 
 export function RecipeDetail() {
   const { setCurretId } = useRecipeStore();
-  const { recipe, isLoading } = useRecipesDetail();
+  const { isLoadingRecipe, recipe } = useRecipesDetail();
 
   const handleClick = () => {
     setCurretId(0);
@@ -11,7 +12,7 @@ export function RecipeDetail() {
 
   return (
     <>
-      {isLoading ? (
+      {isLoadingRecipe ? (
         <p>Cargando receta</p>
       ) : (
         <div className="flex flex-col items-center  my-8 mx-8 sm:mx-16">
@@ -31,9 +32,17 @@ export function RecipeDetail() {
               className="w-full h-auto rounded-lg "
             />
             <h1 className="text-4xl">{recipe?.title}</h1>
-            <p>Tiempo total de Preparación: {recipe?.readyInMinutes}</p>
-            <p>Cantidad de porciones: {recipe?.servings}</p>
-            <p>{recipe?.summary}</p>
+            <div>
+              <button className="py-2 px-6 rounded-full bg-[#394150] me-3">
+                Portions: <span className="font-bold">{recipe?.servings}</span>
+              </button>
+              <button className="py-2 px-6 rounded-full bg-[#394150]">
+                Time:{" "}
+                <span className="font-bold">{recipe?.readyInMinutes}</span>
+              </button>
+            </div>
+            <IngredientsList />
+            <p>Tiempo total de Preparación: {recipe?.summary}</p>
           </div>
         </div>
       )}
