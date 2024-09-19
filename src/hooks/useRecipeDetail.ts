@@ -13,6 +13,7 @@ const RecipeDetail = z.object({
   image: z.string(),
   imageType: z.string(),
   summary: z.string(),
+  instructions: z.string(),
 });
 
 const Ingredient = z.object({

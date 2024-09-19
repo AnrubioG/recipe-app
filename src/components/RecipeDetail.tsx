@@ -38,11 +38,11 @@ export function RecipeDetail() {
               </button>
               <button className="py-2 px-6 rounded-full bg-[#394150]">
                 Time:{" "}
-                <span className="font-bold">{recipe?.readyInMinutes}</span>
+                <span className="font-bold">{recipe?.readyInMinutes} min</span>
               </button>
             </div>
             <IngredientsList />
-            <p>Tiempo total de Preparación: {recipe?.summary}</p>
+            <p>{recipe?.instructions}</p>
           </div>
         </div>
       )}
