@@ -4,19 +4,26 @@ import { devtools } from "zustand/middleware";
 
 type RecipeState = {
   currentId: Recipe["id"];
+  currentCategory: string;
   setCurretId: (id: Recipe["id"]) => void;
+  setCurrentCategory: (category: string) => void;
 };
 
 export const useRecipeStore = create<RecipeState>()(
   devtools((set) => ({
-    recipes: [],
     currentId: 0,
+    currentCategory: "",
 
     setCurretId: (id) => {
       set(() => ({
         currentId: id,
       }));
-      // console.log(id);
+    },
+
+    setCurrentCategory: (category) => {
+      set(() => ({
+        currentCategory: category,
+      }));
     },
   }))
 );

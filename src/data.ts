@@ -1,7 +1,7 @@
 export const categories = [
-  { id: 1, name: "Carne", image: "beef.png" },
-  { id: 2, name: "Pollo", image: "beef.png" },
-  { id: 3, name: "Helado", image: "beef.png" },
-  { id: 4, name: "Ensaladas", image: "beef.png" },
-  { id: 5, name: "Sopas", image: "beef.png" },
+  { id: 1, name: "meat", image: "beef.png" },
+  { id: 2, name: "chicken", image: "beef.png" },
+  { id: 3, name: "pork", image: "beef.png" },
+  { id: 4, name: "fish", image: "beef.png" },
+  { id: 5, name: "tofu", image: "beef.png" },
 ];

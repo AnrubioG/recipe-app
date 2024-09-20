@@ -5,15 +5,22 @@ import SearchBar from "./SearchBar";
 import { categories } from "../data";
 import { Recipe, useRecipes } from "../hooks/useRecipes";
 import { useRecipeStore } from "@/store/store";
+import { useCategories } from "@/hooks/useCategories";
 
 export function Categories() {
-  const { setCurretId } = useRecipeStore();
+  const { setCurretId, setCurrentCategory } = useRecipeStore();
   const { recipes } = useRecipes();
+  const { recipesByCategories } = useCategories();
+
+  const currentRecipes = recipesByCategories ? recipesByCategories : recipes;
 
   const handleClick = (id: Recipe["id"]) => {
     setCurretId(id);
   };
 
+  const selectCategory = (categoryName: string) => {
+    setCurrentCategory(categoryName);
+  };
   return (
     <>
       <header
@@ -37,6 +44,7 @@ export function Categories() {
                 key={category.id}
                 name={category.name}
                 img={category.image}
+                onclick={() => selectCategory(category.name)}
               />
             ))}
           </div>
@@ -50,7 +58,7 @@ export function Categories() {
           </div>
           {/* recetas */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-8">
-            {recipes.map((recipe) => (
+            {currentRecipes.map((recipe) => (
               <RecipeCard
                 key={recipe.id}
                 onClick={() => handleClick(recipe.id)}
